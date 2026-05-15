@@ -51,11 +51,11 @@ namespace GestaoPedidos.Domain.Repositories
                 }).ToListAsync();
         }
 
-        public async Task<ClienteResponseDto?> PesquisarDtoPorId(int id)
+        public async Task<ClienteResponseDto?> PesquisarDtoPorId(int clienteId)
         {
             return await _context.Cliente
                 .AsNoTracking()
-                .Where(w => w.Id == id)
+                .Where(w => w.Id == clienteId)
                 .Select(s => new ClienteResponseDto
                 {
                     Id = s.Id,
@@ -68,10 +68,10 @@ namespace GestaoPedidos.Domain.Repositories
                 }).FirstOrDefaultAsync();
         }
 
-        public async Task<Cliente?> PesquisarClientePorId(int Id)
+        public async Task<Cliente?> PesquisarClientePorId(int clienteId)
         {
             return await _context.Cliente
-                .FirstOrDefaultAsync(x => x.Id == Id);
+                .FirstOrDefaultAsync(x => x.Id == clienteId);
         }
 
         public async Task Atualizar()

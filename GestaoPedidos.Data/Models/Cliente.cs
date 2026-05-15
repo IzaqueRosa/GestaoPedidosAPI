@@ -12,6 +12,7 @@ namespace GestaoPedidos.Data.Models
         public bool Ativo { get; set; }
         public DateTimeOffset DataCriacao { get; set; }
         public DateTimeOffset? DataAtualizacao { get; set; }
-
+        public ICollection<Pedido> Pedidos { get; set; }
+            = new List<Pedido>();
     }
 }

@@ -53,12 +53,13 @@ namespace GestaoPedidosAPI.Controllers
         /// Alterar status do pedido.
         /// </summary>
         /// <param name="id">ID do pedido.</param>
-        /// <param name="status">Novo status do pedido. [1]Ativo / [0]Inativo.</param>
+        /// <param name="pedidoStatusRequestDto">Dto contando novo status e motivo da alteração.</param>
         [HttpPatch]
-        [Route("{id}/{status}")]
-        public async Task<IActionResult> AlterarStatus(string id, string status)
+        [Route("{id}/status")]
+        public async Task<IActionResult> AlterarStatus(string id, [FromBody] PedidoStatusRequestDto pedidoStatusRequestDto)
         {
-            return Ok(await _pedidoService.AlterarStatus(id, status));
+            await _pedidoService.AlterarStatus(id, pedidoStatusRequestDto);
+            return Ok();
         }
     }
 }

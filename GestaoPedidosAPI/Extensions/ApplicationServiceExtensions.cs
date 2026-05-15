@@ -19,14 +19,10 @@ namespace GestaoPedidosAPI.Extensions
         public static IServiceCollection AddServiceInjection(this IServiceCollection services, IConfiguration config)
         {
             services.AddScoped<IClienteService, ClienteService>();
-            services.AddScoped<IPedidoHistoricoService, PedidoHistoricoService>();
-            services.AddScoped<IPedidoItemService, PedidoItemService>();
             services.AddScoped<IPedidoService, PedidoService>();
             services.AddScoped<IProdutoService, ProdutoService>();
 
             services.AddScoped<IClienteRepository, ClienteRepository>();
-            services.AddScoped<IPedidoHistoricoRepository, PedidoHistoricoRepository>();
-            services.AddScoped<IPedidoItemRepository, PedidoItemRepository>();
             services.AddScoped<IPedidoRepository, PedidoRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
 

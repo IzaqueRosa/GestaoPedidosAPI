@@ -1,12 +1,13 @@
-﻿using GestaoPedidos.Data.Models.Dtos;
+﻿using GestaoPedidos.Data.Models;
+using GestaoPedidos.Data.Models.Dtos;
 
 namespace GestaoPedidos.Domain.Interfaces.Services
 {
     public interface IPedidoService
     {
-        Task<object?> AlterarStatus(string id, string status);
-        Task<object?> Inserir(PedidoRequestDto pedidoRequestDto);
-        Task<object?> PesquisarPorId(string id);
-        Task<object?> PesquisarTodos();
+        Task AlterarStatus(string id, PedidoStatusRequestDto pedidoStatusRequestDto);
+        Task<PedidoResponseDto> Inserir(PedidoRequestDto pedidoRequestDto);
+        Task<PedidoResponseDto> PesquisarPorId(string id);
+        Task<List<PedidoResponseDto>> PesquisarTodos();
     }
 }

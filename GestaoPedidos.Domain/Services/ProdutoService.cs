@@ -3,7 +3,6 @@ using GestaoPedidos.Data.Models.Dtos;
 using GestaoPedidos.Domain.Exceptions;
 using GestaoPedidos.Domain.Interfaces.Repositories;
 using GestaoPedidos.Domain.Interfaces.Services;
-using GestaoPedidos.Domain.Repositories;
 
 namespace GestaoPedidos.Domain.Services
 {
@@ -18,7 +17,12 @@ namespace GestaoPedidos.Domain.Services
 
         public async Task Atualizar(string id, ProdutoRequestDto produtoRequestDto)
         {
-            var produto = await _produtoRepository.PesquisarProdutoPorId(int.Parse(id));
+            if (!int.TryParse(id, out int produtoId))
+            {
+                throw new BusinessException("Produto inválido.");
+            }
+
+            var produto = await _produtoRepository.PesquisarProdutoPorId(produtoId);
 
             if (produto == null)
                 throw new BusinessException("Produto não encontrado.");
@@ -67,7 +71,12 @@ namespace GestaoPedidos.Domain.Services
 
         public async Task<ProdutoResponseDto> PesquisarDtoPorId(string id)
         {
-            var produtoResponseDto = await _produtoRepository.PesquisarDtoPorId(int.Parse(id));
+            if (!int.TryParse(id, out int produtoId))
+            {
+                throw new BusinessException("Produto inválido.");
+            }
+
+            var produtoResponseDto = await _produtoRepository.PesquisarDtoPorId(produtoId);
 
             if (produtoResponseDto == null)
                 throw new BusinessException("Produto não encontrado.");
@@ -77,7 +86,12 @@ namespace GestaoPedidos.Domain.Services
 
         public async Task Inativar(string id)
         {
-            var produto = await _produtoRepository.PesquisarProdutoPorId(int.Parse(id));
+            if (!int.TryParse(id, out int produtoId))
+            {
+                throw new BusinessException("Produto inválido.");
+            }
+
+            var produto = await _produtoRepository.PesquisarProdutoPorId(produtoId);
 
             if (produto == null)
                 throw new BusinessException("Produto não encontrado.");

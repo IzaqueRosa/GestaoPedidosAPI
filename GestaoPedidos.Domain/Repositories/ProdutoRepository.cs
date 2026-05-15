@@ -29,11 +29,11 @@ namespace GestaoPedidos.Domain.Repositories
             return produto;
         }
 
-        public async Task<ProdutoResponseDto?> PesquisarDtoPorId(int id)
+        public async Task<ProdutoResponseDto?> PesquisarDtoPorId(int produtoId)
         {
             return await _context.Produto
                 .AsNoTracking()
-                .Where(w => w.Id == id)
+                .Where(w => w.Id == produtoId)
                 .Select(s => new ProdutoResponseDto
                 {
                     Id = s.Id,
@@ -47,10 +47,21 @@ namespace GestaoPedidos.Domain.Repositories
                 }).FirstOrDefaultAsync();
         }
 
-        public async Task<Produto?> PesquisarProdutoPorId(int id)
+        public async Task<Produto?> PesquisarProdutoPorId(int produtoId)
         {
             return await _context.Produto
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .Where(x => x.Id == produtoId)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Produto>> PesquisarProdutosPorIds(List<int> produtosIds)
+        {
+            if (produtosIds == null || !produtosIds.Any())
+                return new List<Produto>();
+
+            return await _context.Produto
+                .Where(x => produtosIds.Contains(x.Id))
+                .ToListAsync();
         }
 
         public async Task<List<ProdutoResponseDto>> PesquisarTodos()

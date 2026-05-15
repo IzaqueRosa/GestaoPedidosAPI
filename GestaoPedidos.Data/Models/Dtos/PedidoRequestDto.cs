@@ -2,14 +2,13 @@
 {
     public class PedidoRequestDto
     {
-        public int Id { get; set; }
-
         public int ClienteId { get; set; }
+        public List<PedidoItemRequestDto> Itens { get; set; }
+    }
 
-        public DateTime DataCriacao { get; set; }
-
-        public string Status { get; set; }
-
-        public decimal ValorTotal { get; set; }
+    public class PedidoItemRequestDto
+    {
+        public int ProdutoId { get; set; }
+        public int Quantidade { get; set; }
     }
 }

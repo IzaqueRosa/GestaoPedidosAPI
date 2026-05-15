@@ -18,7 +18,12 @@ namespace GestaoPedidos.Domain.Services
 
         public async Task Inativar(string id)
         {
-            var cliente = await _clienteRepository.PesquisarClientePorId(int.Parse(id));
+            if (!int.TryParse(id, out int clienteId))
+            {
+                throw new BusinessException("Cliente inválido.");
+            }
+
+            var cliente = await _clienteRepository.PesquisarClientePorId(clienteId);
 
             if (cliente == null)
                 throw new BusinessException("Cliente não encontrado.");
@@ -66,7 +71,12 @@ namespace GestaoPedidos.Domain.Services
 
         public async Task<ClienteResponseDto?> PesquisarDtoPorId(string id)
         {
-            var clienteResponseDto = await _clienteRepository.PesquisarDtoPorId(int.Parse(id));
+            if (!int.TryParse(id, out int clienteId))
+            {
+                throw new BusinessException("Cliente inválido.");
+            }
+
+            var clienteResponseDto = await _clienteRepository.PesquisarDtoPorId(clienteId);
 
             if (clienteResponseDto == null)
                 throw new BusinessException("Cliente não encontrado.");

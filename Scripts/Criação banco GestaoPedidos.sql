@@ -66,7 +66,7 @@ BEGIN
         Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
         ClienteId INT NOT NULL,
         DataCriacao DATETIMEOFFSET NOT NULL,
-        Status NVARCHAR(50) NOT NULL,
+        Status INT NOT NULL,
         ValorTotal DECIMAL(18,2) NOT NULL CONSTRAINT DF_PEDIDO_ValorTotal DEFAULT(0),
 
         CONSTRAINT FK_PEDIDO_CLIENTE
@@ -112,8 +112,8 @@ BEGIN
     (
         Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
         PedidoId INT NOT NULL,
-        StatusAnterior NVARCHAR(50) NULL,
-        NovoStatus NVARCHAR(50) NOT NULL,
+        StatusAnterior INT NULL,
+        NovoStatus INT NOT NULL,
         DataHoraAlteracao DATETIMEOFFSET NOT NULL,
         Motivo NVARCHAR(1000) NULL,
 

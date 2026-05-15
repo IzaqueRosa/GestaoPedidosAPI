@@ -7,8 +7,9 @@ namespace GestaoPedidos.Domain.Interfaces.Repositories
     {
         Task Atualizar();
         Task<Produto> Inserir(Produto produto);
-        Task<ProdutoResponseDto?> PesquisarDtoPorId(int id);
-        Task<Produto> PesquisarProdutoPorId(int id);
+        Task<ProdutoResponseDto?> PesquisarDtoPorId(int produtoId);
+        Task<Produto?> PesquisarProdutoPorId(int produtoId);
+        Task<List<Produto>> PesquisarProdutosPorIds(List<int> produtosIds);
         Task<List<ProdutoResponseDto>> PesquisarTodos();
     }
 }

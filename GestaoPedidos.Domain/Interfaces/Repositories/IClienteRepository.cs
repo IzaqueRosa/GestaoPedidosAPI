@@ -9,8 +9,8 @@ namespace GestaoPedidos.Domain.Interfaces.Repositories
         Task<bool> ExisteDocumentoAtivo(string documento);
         Task<Cliente> Inserir(Cliente cliente);
         Task<List<ClienteResponseDto>> PesquisarTodos();
-        Task<ClienteResponseDto?> PesquisarDtoPorId(int id);
-        Task<Cliente?> PesquisarClientePorId(int v);
+        Task<ClienteResponseDto?> PesquisarDtoPorId(int clienteId);
+        Task<Cliente?> PesquisarClientePorId(int clienteId);
         Task Atualizar();
     }
 }
